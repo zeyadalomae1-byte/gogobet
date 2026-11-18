@@ -6,68 +6,168 @@
 <title>GogoBet - Kazanmaya Hazır Ol!</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#101510;color:white;
- font-family:Arial,sans-serif;
-}
-header{
- background:#080d09;padding:20px;
- display:flex;justify-content:space-between;
- align-items:center;border-bottom:2px solid #39ff14;
-}
+body{margin:0;background:#101510;color:white;font-family:Arial}
+header{background:#080d09;padding:17px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #39ff14}
 .logo{font-size:27px;font-weight:bold;color:#39ff14}
-button{
- background:#39ff14;color:#071007;
- border:0;padding:12px 18px;
- border-radius:6px;font-weight:bold;
-}
-.hero{text-align:center;padding:55px 15px}
-.hero h1{color:#39ff14;font-size:36px}
+button{cursor:pointer;border:0;border-radius:6px;padding:11px;background:#39ff14;color:#071007;font-weight:bold}
+nav{display:flex;gap:8px;padding:12px;background:#182019;overflow:auto}
+nav button{white-space:nowrap}
+.hero{text-align:center;padding:35px 10px;background:linear-gradient(135deg,#101510,#19301a)}
+.hero h1{font-size:38px;color:#39ff14;margin-bottom:5px}
 .hero p{color:#bbb}
-.container{padding:15px}
-.section-title{color:#39ff14}
-.match{
- background:#202820;padding:18px;
- margin:12px 0;border-radius:9px;
- border:1px solid #344034;
-}
-.match button{width:100%;margin-top:10px}
+.container{padding:15px;max-width:900px;margin:auto}
+h2{color:#39ff14}
+.match{background:#202820;padding:16px;margin:13px 0;border:1px solid #344034;border-radius:10px}
+.teams{display:flex;justify-content:space-between;align-items:center;font-weight:bold;gap:8px}
+.odds{display:flex;gap:8px;margin-top:15px}
+.odds button{flex:1;background:#303d30;color:white;border:1px solid #506050}
+.odds button.selected{background:#39ff14;color:#071007}
+.panel{background:#202820;padding:16px;border-radius:10px;margin-top:18px}
+input{width:100%;padding:12px;margin:8px 0;border-radius:6px;border:1px solid #555;background:#101510;color:white}
+.hidden{display:none}
+.modal{position:fixed;inset:0;background:#000d;display:flex;justify-content:center;align-items:center;padding:15px;z-index:10}
+.modal-box{background:#202820;padding:22px;border-radius:12px;width:100%;max-width:350px}
+.close{float:right;background:#555;color:white}
 footer{text-align:center;padding:25px;color:#888}
+#slip{position:sticky;bottom:0;background:#182019;padding:15px;border-top:2px solid #39ff14}
+.small{color:#aaa;font-size:13px}
 </style>
 </head>
 <body>
 
 <header>
  <div class="logo">GogoBet</div>
- <button onclick="alert('Giriş Yap')">Giriş Yap</button>
+ <button onclick="openModal('login')">Giriş Yap</button>
 </header>
+
+<nav>
+ <button onclick="showSection('sports')">Spor</button>
+ <button onclick="showSection('sports')">Futbol</button>
+ <button onclick="showSection('sports')">Canlı</button>
+ <button onclick="showSection('account')">Hesabım</button>
+</nav>
 
 <div class="hero">
  <h1>GogoBet</h1>
  <h2>Kazanmaya Hazır Ol!</h2>
  <p>Sporun heyecanını yaşa!</p>
- <button onclick="alert('Kayıt işlemi')">Hemen Katıl</button>
+ <button onclick="openModal('register')">Hemen Katıl</button>
 </div>
 
-<div class="container">
- <h2 class="section-title">⚽ Spor Bahisleri</h2>
+<main class="container" id="sports">
+ <h2>⚽ Popüler Maçlar</h2>
 
  <div class="match">
-  <h3>Galatasaray - Fenerbahçe</h3>
-  <p>Maç sonucu</p>
-  <button>Oranları Gör</button>
+  <p class="small">TÜRKİYE • FUTBOL</p>
+  <div class="teams">
+   <span>Galatasaray</span><span>VS</span><span>Fenerbahçe</span>
+  </div>
+  <div class="odds">
+   <button onclick="pick(this,'Galatasaray kazanır','1.85')">1<br>1.85</button>
+   <button onclick="pick(this,'Beraberlik','3.20')">X<br>3.20</button>
+   <button onclick="pick(this,'Fenerbahçe kazanır','2.10')">2<br>2.10</button>
+  </div>
  </div>
 
  <div class="match">
-  <h3>Beşiktaş - Trabzonspor</h3>
-  <p>Maç sonucu</p>
-  <button>Oranları Gör</button>
+  <p class="small">TÜRKİYE • FUTBOL</p>
+  <div class="teams">
+   <span>Beşiktaş</span><span>VS</span><span>Trabzonspor</span>
+  </div>
+  <div class="odds">
+   <button onclick="pick(this,'Beşiktaş kazanır','2.00')">1<br>2.00</button>
+   <button onclick="pick(this,'Beraberlik','3.10')">X<br>3.10</button>
+   <button onclick="pick(this,'Trabzonspor kazanır','2.40')">2<br>2.40</button>
+  </div>
+ </div>
+
+ <div class="match">
+  <p class="small">İNGİLTERE • FUTBOL</p>
+  <div class="teams">
+   <span>Arsenal</span><span>VS</span><span>Chelsea</span>
+  </div>
+  <div class="odds">
+   <button onclick="pick(this,'Arsenal kazanır','1.75')">1<br>1.75</button>
+   <button onclick="pick(this,'Beraberlik','3.50')">X<br>3.50</button>
+   <button onclick="pick(this,'Chelsea kazanır','2.80')">2<br>2.80</button>
+  </div>
+ </div>
+</main>
+
+<div class="container hidden" id="account">
+ <div class="panel">
+  <h2>Hesabım</h2>
+  <p id="welcome">Henüz giriş yapılmadı.</p>
+  <button onclick="openModal('login')">Giriş Yap</button>
+  <button onclick="openModal('register')">Kayıt Ol</button>
  </div>
 </div>
 
-<footer>
- GogoBet © 2026
-</footer>
+<div id="slip">
+ <b>Kuponum</b>
+ <p id="selection">Henüz seçim yapılmadı.</p>
+ <p class="small">Bu alan yalnızca sanal tahmin demosudur. Gerçek para kullanılmaz.</p>
+</div>
+
+<div class="modal hidden" id="login">
+ <div class="modal-box">
+  <button class="close" onclick="closeModal()">X</button>
+  <h2>Giriş Yap</h2>
+  <input id="loginName" placeholder="Kullanıcı Adı">
+  <button onclick="login()">Giriş</button>
+ </div>
+</div>
+
+<div class="modal hidden" id="register">
+ <div class="modal-box">
+  <button class="close" onclick="closeModal()">X</button>
+  <h2>Hesap Oluştur</h2>
+  <input id="regName" placeholder="Kullanıcı Adı">
+  <button onclick="register()">Kayıt Ol</button>
+ </div>
+</div>
+
+<footer>GogoBet © 2026<br>Kazanmaya Hazır Ol!</footer>
+
+<script>
+let selected = '';
+
+function showSection(id){
+ document.getElementById('sports').classList.toggle('hidden',id!=='sports');
+ document.getElementById('account').classList.toggle('hidden',id!=='account');
+}
+
+function openModal(id){
+ document.getElementById(id).classList.remove('hidden');
+}
+
+function closeModal(){
+ document.querySelectorAll('.modal').forEach(m=>m.classList.add('hidden'));
+}
+
+function pick(btn,name,odd){
+ document.querySelectorAll('.odds button').forEach(b=>b.classList.remove('selected'));
+ btn.classList.add('selected');
+ selected=name+' | Oran: '+odd;
+ document.getElementById('selection').textContent=selected;
+}
+
+function login(){
+ let name=document.getElementById('loginName').value.trim();
+ if(!name){alert('Kullanıcı adını girin');return;}
+ document.getElementById('welcome').textContent='Hoş geldin, '+name;
+ closeModal();
+ showSection('account');
+}
+
+function register(){
+ let name=document.getElementById('regName').value.trim();
+ if(!name){alert('Kullanıcı adı girin');return;}
+ document.getElementById('welcome').textContent='Merhaba, '+name;
+ closeModal();
+ showSection('account');
+}
+</script>
 
 </body>
 </html>
